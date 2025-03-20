@@ -1,64 +1,64 @@
-class University {
-  String universityName;
-  String location;
 
-University(String name, String loc) {
-universityName = name;
- location = loc;
+class Bank {
+String bankName;
+String headOfficeLocation;
+Bank(String bankName, String headOfficeLocation) {
+this.bankName = bankName;
+this.headOfficeLocation = headOfficeLocation;
     }
 
- void displayUniversityInfo() {
-    System.out.println("University Name: " + universityName);
-    System.out.println("Location: " + location);
-  }
-}
-
-
-class College extends University {
-   String collegeName;
-   int collegeRank;
-
-College(String universityName, String location, String collegeName, int collegeRank) {
-  super(universityName, location); // Call constructor of University
-   this.collegeName = collegeName;
-   this.collegeRank = collegeRank;
-  }
-
-void displayCollegeInfo() {
-System.out.println("College Name: " + collegeName);
- System.out.println("College Rank: " + collegeRank);
- }
-}
-
-class Department extends College {
-String departmentName;
-int numberOfStudents;
-Department(String universityName, String location, String collegeName, int collegeRank,
-String departmentName, int numberOfStudents)
- {
-super(universityName, location, collegeName, collegeRank);       
-this.departmentName = departmentName;
-this.numberOfStudents = numberOfStudents;
-    }
-
- void displayDepartmentInfo() {
-System.out.println("Department Name: " + departmentName);
- System.out.println("Number of Students: " + numberOfStudents);
+void displayBankDetails() {
+System.out.println("Bank Name: " + bankName);
+System.out.println("Head Office: " + headOfficeLocation);
     }
 }
 
-public class Multilevelone {
+class Branch extends Bank {
+String branchName;
+String branchCode;
+
+Branch(String bankName, String headOfficeLocation, String branchName, String branchCode) {
+ super(bankName, headOfficeLocation); // Calls the constructor of Bank
+this.branchName = branchName;
+this.branchCode = branchCode;
+    }
+
+void displayBranchDetails() {
+ System.out.println("Branch Name: " + branchName);
+System.out.println("Branch Code: " + branchCode);
+    }
+}
+
+class Account extends Branch {
+String accountHolderName;
+ String accountNumber;
+ double balance;
+ Account(String bankName, String headOfficeLocation,
+String branchName, String branchCode,
+ String accountHolderName, String accountNumber, double balance) {
+
+super(bankName, headOfficeLocation, branchName, branchCode); 
+ this.accountHolderName = accountHolderName;
+this.accountNumber = accountNumber;
+this.balance = balance;
+    }
+
+void displayAccountDetails() {
+System.out.println("Account Holder: " + accountHolderName);
+System.out.println("Account Number: " + accountNumber);
+System.out.println("Balance: $" + balance);
+   }
+}
+
+public class Multileveltwo {
     public static void main(String[] args) {
 
- Department dept = new Department("Oxford University", "UK",
-   "Engineering College", 1,
- "Computer Science", 300);
+Account account = new Account("Global Bank", "New York",
+"Downtown Branch", "DT001",
+"Alice Johnson", "ACC123456", 10500.75);
 
-
-        
-dept.displayUniversityInfo();      
-    
-dept.displayCollegeInfo();         
-dept.displayDepartmentInfo();   
+account.displayBankDetails(); 
+account.displayBranchDetails();            
+account.displayAccountDetails();  
     }
 }
